@@ -142,7 +142,7 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	private static int appAlreadyStarted = 0;
 	//private int scrollSpeedProgress = 1;
 	private static int scrollSpeedValue = 100;
-	private int fontSizeValue = 26;
+	private int fontSizeValue = 15;
 	
 	private ColorPicker picker;
 	private SVBar svBar;
@@ -265,20 +265,20 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
        
         
         picker = (ColorPicker) findViewById(R.id.picker);
-		svBar = (SVBar) findViewById(R.id.svbar);
-		opacityBar = (OpacityBar) findViewById(R.id.opacitybar);
+		//svBar = (SVBar) findViewById(R.id.svbar);
+		//opacityBar = (OpacityBar) findViewById(R.id.opacitybar);
 		button = (Button) findViewById(R.id.button1);
 		writeButton_ = (Button) findViewById(R.id.writeButton);
 		text = (TextView) findViewById(R.id.textView1);
 		
-		picker.addSVBar(svBar);
-		picker.addOpacityBar(opacityBar);
+		//picker.addSVBar(svBar);
+		//picker.addOpacityBar(opacityBar);
 		picker.setOnColorChangedListener(this);
 		
-		VerticalPositionSeekBar = (SeekBar)findViewById(R.id.VerticalBar);
+		/*VerticalPositionSeekBar = (SeekBar)findViewById(R.id.VerticalBar);
 	    VerticalPositionSeekBar.setMax(KIND.height); //maximum for y offset is 32 for pixel and 64 for super pixel 
 	    VerticalPositionSeekBar.setProgress(prefYoffset_); //start in the middle
-	    
+*/	    
 		if (isNetworkAvailable()) {
 	    
 		    ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -291,9 +291,8 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 		   	twitter = twitterFactory.getInstance();
 	   	
 		}
-	   	
-	   
-	    VerticalPositionSeekBar.setOnSeekBarChangeListener(OnSeekBarProgress);
+		
+	    //VerticalPositionSeekBar.setOnSeekBarChangeListener(OnSeekBarProgress);
 		
 		button.setOnClickListener(new OnClickListener() {
 			
@@ -321,10 +320,10 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
         
 		System.out.println("scrolling frames: " + (scrollSpeedSeekBar_.getProgress() + 1) );
 		
-        fontSizeSeekBar_ = (SeekBar)findViewById(R.id.FontSeekBar);
+       /* fontSizeSeekBar_ = (SeekBar)findViewById(R.id.FontSeekBar);
         fontSizeSeekBar_.setOnSeekBarChangeListener(OnSeekBarProgress);
         fontSizeSeekBar_.setMax(96);
-        fontSizeSeekBar_.setProgress(Integer.parseInt(prefFontSize));
+        fontSizeSeekBar_.setProgress(Integer.parseInt(prefFontSize));*/
         
         if (noSleep == true) {        	      	
         	this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //disables sleep mode
@@ -348,8 +347,6 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
     		ColorWheel = Color.GREEN;
         	paint.setColor(ColorWheel);
     	}
-        	//paint.setTypeface(tf);
-    	
     	
     	 // Get intent, action and MIME type
 	      Intent intent = getIntent();
@@ -418,10 +415,14 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
         setFont(prefFontPosition);
         //we have the default font set so let's also set the spinner position so the user knows
         fontSpinner.setSelection(prefFontPosition);
-    	int prefFontSizeNum = Integer.parseInt(prefFontSize.toString());
-        prefFontSizeNum = ((int)Math.round(prefFontSizeNum/stepSize))*stepSize + fontSizeStepper;
-		paint.setTextSize(prefFontSizeNum);
-    	//paint.setFlags(Paint.ANTI_ALIAS_FLAG);  //important to remove this , we don't want anti-aliasing for pixel art
+    	
+        //int prefFontSizeNum = Integer.parseInt(prefFontSize.toString());
+        
+    	//prefFontSizeNum = ((int)Math.round(prefFontSizeNum/stepSize))*stepSize + fontSizeStepper;
+		paint.setTextSize(fontSizeValue);
+    	
+		
+		//paint.setFlags(Paint.ANTI_ALIAS_FLAG);  //important to remove this , we don't want anti-aliasing for pixel art
 		
     	textField.addTextChangedListener(new TextWatcher(){  //had to add this , without it the text will disappear sometimes when charcters are removed, x becomes higher than the message length
             public void afterTextChanged(Editable s) {
@@ -485,20 +486,21 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 		                
 	            	}
 	            	    
-	            	if(s == fontSizeSeekBar_) {
+	            	/*if(s == fontSizeSeekBar_) {
 	            		if (deviceFound && pixelHardwareID.substring(0,4).equals("PIXL")) pixel.interactiveMode();
 	            		int rawProgress = progress;
 	            		progress = ((int)Math.round(progress/stepSize))*stepSize + fontSizeStepper;
 	            		fontSizeValue = progress;
+	            		fontSizeValue = 15;  //TO DO fix this later
 	            		paint.setTextSize(fontSizeValue);
 	            		
 	            	    mEditor = savePrefs.edit();
 	            		mEditor.putString("fontKey", String.valueOf(rawProgress));
 	            		mEditor.commit();
 	            		
-	            		/*if(scrollingtextTimer_ != null) {
+	            		if(scrollingtextTimer_ != null) {
 	               		 	resetScrolling();
-	               	 	}*/
+	               	 	}
 	            		
 	            		 if (deviceFound ) resetScrolling();
 	            		
@@ -514,15 +516,13 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	            		mEditor.putInt("prefYoffset", progress); 
 	            		mEditor.commit();
 	            		
-	            		/*if(scrollingtextTimer_ != null) {
+	            		if(scrollingtextTimer_ != null) {
 	               		 	resetScrolling();
-	               	 	}*/
+	               	 	}
 	            		
 	            		 if (deviceFound) resetScrolling();
-	            		
-	            		
-	            		
-		            }
+		            }*/
+	            	
 	            }
       }
         	
@@ -587,7 +587,12 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
     	 paint.setColor(ColorWheel); //let's get the color the user has specified from the color wheel widget
          scrollingText = textField.getText().toString(); //let's get the text the user has mentioned
      	 paint.getTextBounds(scrollingText, 0, scrollingText.length(), bounds);
-     	 yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+     	 //yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+     	 //yCenter =  (int) (KIND.height - Math.abs(bounds.exactCenterY()));
+     	 //yCenter = KIND.height/2 + Math.abs(bounds.height())/2;
+     	 yCenter = (KIND.height/2 + Math.abs(bounds.height())/2) - Math.abs(bounds.bottom);
+     	 
+     	 //safsd
      	 messageWidth = bounds.width(); 
         // showToast(Integer.toString(messageWidth));
       	
@@ -610,17 +615,14 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	       		paint.setColor(ColorWheel); //let's get the color the user has specified from the color wheel widget
 	            scrollingText = textField.getText().toString(); //let's get the text the user has mentioned
 	            paint.getTextBounds(scrollingText, 0, scrollingText.length(), bounds);
-	       		yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+	       		//yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+	       		//yCenter =  (int) (KIND.height - Math.abs(bounds.exactCenterY()));
+	       		//yCenter = KIND.height/2 + Math.abs(bounds.height())/2;
+	       		yCenter = (KIND.height/2 + Math.abs(bounds.height())/2) - Math.abs(bounds.bottom);
 	    	    scrollingtextTimer_ = new ScrollingTextTimer (100000,scrollSpeedValue);
 		 		scrollingtextTimer_.start();
        }
-    	
-    	
-    	//scrollingtextTimer_ = new ScrollingTextTimer (100000,scrollSpeedValue);  //scrollSpeedValue was changed, we hard code at 100
- 		//scrollingtextTimer_.start();
     }
-    
-   
     
     private void setFont(int fontPosition) {
     	
@@ -833,7 +835,6 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
  	        resources.getString(R.string.twitterRefresh),
  	        resources.getString(R.string.twitterRefreshDefault))); 
      
-   
      
      if (AutoSelectPanel_ && pixelHardwareID.substring(0,4).equals("PIXL") && !pixelHardwareID.substring(4,5).equals("0")) { // PIXL0008 or PIXL0009 is the normal so if it's just a 0 for the 5th character, then we don't go here
 	    	
@@ -1100,10 +1101,24 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 							{	
 			 	            	 
 			 	            	paint.setColor(ColorWheel); //let's get the color the user has specified from the color wheel widget
-			 	                scrollingText = textField.getText().toString(); //let's get the text the user has mentioned
+			 	                
+			 	            	scrollingText = textField.getText().toString(); //let's get the text the user has mentioned
 			 	            	paint.getTextBounds(scrollingText, 0, scrollingText.length(), bounds);
-			 	            	yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+			 	            	Log.d("test", "Bounds:" + bounds);
+			 	            	//yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+			 	            	//yCenter =  (int) (KIND.height - Math.abs(bounds.exactCenterY()));
+			 	            	//yCenter =  (int) (KIND.height - bounds.bottom);
+			 	            	
+			 	            	yCenter = (KIND.height/2 + Math.abs(bounds.height())/2) - Math.abs(bounds.bottom);
+			 	            	
+			 	            	//canvas.drawText(text, 0, textBounds.height()-textBounds.bottom, paint);
+			 	            	
+			 	            	
 			 	            	messageWidth = bounds.width(); 
+			 	            	Log.d("test", "height: " + bounds.height());
+			 	            	Log.d("test", "bottom: " + bounds.bottom);
+			 	            	Log.d("test","exact center y: " + Math.abs(bounds.exactCenterY()));
+			 	            	Log.d("test", "yCenter: " + yCenter);
 			 	  	            //showToast(Integer.toString(messageWidth));
 			 	            	 
 			 	  	            if (messageWidth < KIND.width) { //then it means we don't need to scroll 
@@ -1170,7 +1185,10 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	  	paint.setColor(ColorWheel); //let's get the color the user has specified from the color wheel widget
         scrollingText = textField.getText().toString(); //let's get the text the user has mentioned
       	paint.getTextBounds(scrollingText, 0, scrollingText.length(), bounds);
-      	yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+      	//yCenter = (KIND.height / 2) + ((bounds.height())/2 + yOffset);
+      	//yCenter =  (int) (KIND.height - Math.abs(bounds.exactCenterY()));
+      	//yCenter = KIND.height/2 + Math.abs(bounds.height())/2;
+      	yCenter = (KIND.height/2 + Math.abs(bounds.height())/2) - Math.abs(bounds.bottom);
 		
 		messageWidth = bounds.width();        
 	        System.out.println("message width in write mode" + " " + messageWidth);

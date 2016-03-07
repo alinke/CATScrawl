@@ -25,7 +25,30 @@
 		android:max="10"
 		android:progress="1"
 		/>
+
 	
+
+	<TextView  
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:text="Font Size:"
+	    />
+
+	<SeekBar
+	    android:id="@+id/FontSeekBar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" />
+
+	<TextView
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Vertial Position: (Left moves text up and right moves down)" />
+
+	<SeekBar
+	    android:id="@+id/VerticalBar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:progress="4" />
 
 	<LinearLayout
 		android:layout_width="wrap_content"
@@ -57,10 +80,24 @@
 	   <Button android:text="WRITE" android:id="@+id/writeButton" android:background="@drawable/red_btn_selector" style="@style/ButtonText"></Button>
 
 	  <com.larswerkman.holocolorpicker.ColorPicker
-	      android:id="@+id/picker"
-	      android:layout_width="wrap_content"
-	      android:layout_height="305dp"
-	      android:layout_gravity="center" />
+        android:id="@+id/picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+ 
+    <com.larswerkman.holocolorpicker.SVBar
+        android:id="@+id/svbar"
+        android:layout_width="322dp"
+        android:layout_height="112dp"
+        android:layout_gravity="center"
+        android:layout_margin="8dip"/>
+ 
+    <com.larswerkman.holocolorpicker.OpacityBar
+        android:id="@+id/opacitybar"
+        android:layout_width="322dp"
+        android:layout_height="112dp"
+        android:layout_gravity="center"
+        android:layout_margin="8dip"/>
  
     <LinearLayout
         android:layout_width="match_parent"

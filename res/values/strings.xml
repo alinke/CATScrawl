@@ -1,6 +1,6 @@
 <resources>
     
-    <string name="app_name">C.A.T Scrawl</string>
+    <string name="app_name">CAT Scrawl</string>
     <string name="seekbar_label">Scrolling Speed:</string>
     <string name="textbox_label">Enter Scrolling Text:</string>
     <string name="defaultText">Type Text Here or go to Settings for Twitter feed</string>
@@ -12,7 +12,7 @@
     <string name="title_activity_main">MainActivity</string>
     
     <string name="menu_about_title">About</string> 
-    <string name="menu_about_summary">http://c-a-t.co\n\nDesigned by Creative Arts and Technology LLC</string>
+    <string name="menu_about_summary">http://catclutch.com\n\nDesigned by Creative Arts and Technology LLC</string>
     <string name="versionString">Version</string> 
     
     <string name="fontSpinner_title">Select Font</string> 
@@ -22,7 +22,7 @@
     
    
    <string name="menu_instructions_title">Instructions</string>
-   <string name="setupInstructionsString">Bluetooth pair to your C.A.T device which will show up as \'PIXEL\' using pin 0000</string>
+   <string name="setupInstructionsString">Bluetooth pair to your CAT device which will show up as \'CAT\' using pin 0000</string>
    <string name="setupInstructionsStringTitle">Instructions</string>   
     
      
@@ -35,12 +35,12 @@
     <string name="scanAllSummary">Only images in the pixel/pixelart folder of your SD card will be displayed. Checking this box displays all SD card pictures.</string>
   
     <string name="OKText">OK</string>   
-    <string name="notFoundString">C.A.T Device Not Found</string>   
+    <string name="notFoundString">CAT Device Not Found</string>   
    
     <string name="selected_matrix">selected_matrix</string>
-    <string name="matrix">C.A.T Model</string>
-    <string name="matrixSummary">Select C.A.T Model</string>    
-    <string name="dialogTitleMatrix">C.A.T Model</string>
+    <string name="matrix">CAT Model</string>
+    <string name="matrixSummary">Select CAT Model</string>    
+    <string name="dialogTitleMatrix">CAT Model</string>
     <string name="matrix_default_value">3</string>   
     
     <string name="twitterRefresh">twitterRefresh</string>
@@ -96,7 +96,7 @@
     <string name="slideShowModeDefault">false</string>
     <string name="slideShowModeSummary">Slide Show Mode</string>
     
-    <string name="noSleep">Disable Power Savings</string>    
+    <string name="noSleep">Keep App On</string>    
     <string name="pref_noSleepDefault">false</string>
     <string name="noSleepSummary">Forces the app to be always on, your device will not go into power savings mode while this app is running. Good if using as a Kiosk for example. </string>
     
@@ -136,7 +136,7 @@
     <string name="pref_debugModeDefault">false</string>    
     <string name="debugModeSummary"></string>
     
-     <string name="AutoSelectPanel">Auto Select C.A.T Device</string>    
+     <string name="AutoSelectPanel">Auto Select CAT Device</string>    
     <string name="pref_AutoSelectPanel">pref_AutoSelectPanel</string>
     <string name="pref_AutoSelectPanelDefault">true</string>
     <string name="AutoSelectPanelSummary">Turn this off if you want to manually select the LED panel</string>

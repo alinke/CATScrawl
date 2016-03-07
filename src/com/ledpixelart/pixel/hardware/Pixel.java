@@ -608,17 +608,7 @@ public int getDecodedresolution(String decodedGIFPathTXT) {  //need to return th
     	
     	//originalImage = Bitmap.createBitmap(64,  64, Bitmap.Config.RGB_565); //was this originally when hard coded for 32x32
     	originalImage = Bitmap.createBitmap( KIND.width * 2,  KIND.height* 2, Bitmap.Config.RGB_565);  //let's create the image we need
-    	Canvas canvas = new Canvas(originalImage);  
-    	
-    	//float y = 50;
-    	
-    	
-    	//y += (Math.abs(r.height()))/2;
-    	//float y = (KIND.height - 32) + 25; //this controls the centering of the scrolling text, was originally 25 but this put the text too high 	  
-    	//y = y * KIND.height/32; //TO DO not sure check this later if this is rigth
-    	
-    	//int paintheight = paint.
-    	
+    	Canvas canvas = new Canvas(originalImage); 
     	canvas.drawText(text, x, y, paint);
 	    canvasBitmap = Bitmap.createBitmap(KIND.width, KIND.height, Config.RGB_565); 
 	    canvas = new Canvas(canvasBitmap);
