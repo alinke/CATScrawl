@@ -219,6 +219,8 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	private static String twitterResult = null;
 	
 	private boolean AutoSelectPanel_ = true;
+	
+	private boolean isAppInBackground = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -230,6 +232,7 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
     	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        isAppInBackground = false;  // we use this to tell us if the app is not longer in the background because of the connection timer which can continue to run after app closed
         
        
         try
@@ -1055,6 +1058,26 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
      
     }
     
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	
+    	if(connectTimer != null) {
+    		connectTimer.cancel();
+    		connectTimer = null;
+        }
+    	
+    	isAppInBackground = true;
+    	
+    	
+    }
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	isAppInBackground = false;
+    }
+    
     private  void scrollTextButtonWrite() { //this gets called if the user hit the write button
     	
     	if (deviceFound) {
@@ -1472,8 +1495,11 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	 
   
   private void showNotFound() {	
-		AlertDialog.Builder alert=new AlertDialog.Builder(this);
-		alert.setTitle(getResources().getString(R.string.notFoundString)).setIcon(R.drawable.icon).setMessage(getResources().getString(R.string.bluetoothPairingString)).setNeutralButton(getResources().getString(R.string.OKText), null).show();	
+		
+	  if (!isAppInBackground) { //if this app is in the background, then don't show this
+		  AlertDialog.Builder alert=new AlertDialog.Builder(this);
+		  alert.setTitle(getResources().getString(R.string.notFoundString)).setIcon(R.drawable.icon).setMessage(getResources().getString(R.string.bluetoothPairingString)).setNeutralButton(getResources().getString(R.string.OKText), null).show();
+	  }
   }
 	
 	private void setText(final String str) 
