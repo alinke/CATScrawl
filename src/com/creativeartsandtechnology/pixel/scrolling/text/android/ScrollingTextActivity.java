@@ -81,6 +81,8 @@ import com.larswerkman.holocolorpicker.ColorPicker.OnColorChangedListener;
 import com.larswerkman.holocolorpicker.OpacityBar;
 import com.larswerkman.holocolorpicker.SVBar;
 import com.ledpixelart.pixel.hardware.Pixel;
+
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 /*
 import java.awt.Color;
 import java.awt.Font;
@@ -221,6 +223,8 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	private boolean AutoSelectPanel_ = true;
 	
 	private boolean isAppInBackground = false;
+	
+	private GoogleAnalyticsTracker tracker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -337,6 +341,10 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
  		
  		context = getApplicationContext();
         enableUi(true);
+        
+        //******* Google Analytics Tracking Code *******  
+        tracker = GoogleAnalyticsTracker.getInstance();
+        //**********************************************
         
         bounds = new Rect();
         
@@ -760,10 +768,10 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
       {
 			
 		if (pixelHardwareID.substring(0,4).equals("MINT")) { //then it's a PIXEL V1 unit
-			showToast("Bluetooth Pair to PIXEL using code: 4545");
+			showToast("Bluetooth Pair to your CAT device using code: 4545");
 		}
 		else { //we have a PIXEL V2 unit
-			showToast("Bluetooth Pair to PIXEL using code: 0000");
+			showToast("Bluetooth Pair to your CAT device using code: 0000");
 		}
 		
 	  Intent intent = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
@@ -1084,7 +1092,7 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
     		scrollText(true);
     	}
     	else {
-    		showToast("PIXEL was not found, did you Bluetooth pair to PIXEL?");
+    		showToast("CAT Clutch not found, did you Bluetooth pair?");
     	}
     }
     
@@ -1353,6 +1361,12 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	   		   }
 	  			
 				System.out.println("PIXEL found, Hardware ID: " + pixelHardwareID);
+				
+				  
+	  		   ///****** Google Analytics Tracking Code *****////
+	  		   tracker.start("UA-75813302-2", 30, context);
+	          //Track some usage (screens and dialogs map well to pageviews):
+	          tracker.trackPageView("/ScrollingActivity");
 				
 				enableUi(true);
 				scrollText(false); //start scrolling text, false means we stream and not write. User can write if they press write buttonl start scrolling when the app starts

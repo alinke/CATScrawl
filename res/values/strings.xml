@@ -26,9 +26,9 @@
    <string name="setupInstructionsStringTitle">Instructions</string>   
     
      
-    <string name="prefTitle">PIXEL Art Settings</string>
+    <string name="prefTitle">CAT Scrawl Settings</string>
     <string name="menu_prefs_title">Settings</string>
-    <string name="prefSummary">PIXEL Art Settings</string>
+    <string name="prefSummary">CAT Scrawl Settings</string>
     
     <string name="scanAll">Show All Album Pics</string>
     <string name="pref_scanAll_default">false</string>
@@ -71,7 +71,7 @@
     <string name="scrollingKeyFramesDialogTitle">Scrolling Smoothness</string>
     <string name="scrollingKeyFramesDefault">1</string> 
     
-    <string name="menu_btPair_title">Bluetooth Pair PIXEL | Code 0000 or 4545 for PIXEL V1</string>  
+    <string name="menu_btPair_title">Bluetooth Pair Code 0000</string>  
     
    
     <string name="BootloaderVersionString">Bootloader Version</string> 
