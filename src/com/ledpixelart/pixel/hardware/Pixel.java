@@ -607,6 +607,7 @@ public int getDecodedresolution(String decodedGIFPathTXT) {  //need to return th
     	//here we'll take a PNG, BMP, or whatever and convert it to RGB565 via a canvas, also we'll re-size the image if necessary
     	
     	//originalImage = Bitmap.createBitmap(64,  64, Bitmap.Config.RGB_565); //was this originally when hard coded for 32x32
+    	//originalImage = Bitmap.createBitmap(64,  32, Bitmap.Config.RGB_565);
     	originalImage = Bitmap.createBitmap( KIND.width * 2,  KIND.height* 2, Bitmap.Config.RGB_565);  //let's create the image we need
     	Canvas canvas = new Canvas(originalImage); 
     	canvas.drawText(text, x, y, paint);

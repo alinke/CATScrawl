@@ -41,7 +41,7 @@
     <string name="matrix">CAT Model</string>
     <string name="matrixSummary">Select CAT Model</string>    
     <string name="dialogTitleMatrix">CAT Model</string>
-    <string name="matrix_default_value">3</string>   
+    <string name="matrix_default_value">1</string>   
     
     <string name="twitterRefresh">twitterRefresh</string>
     <string name="twitterRefreshTitle">Twitter refresh interval</string>

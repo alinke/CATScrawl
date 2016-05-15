@@ -1033,10 +1033,10 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 		     }
  	 }
       
-     frame_ = new short [KIND.width * KIND.height];
-	 BitmapBytes = new byte[KIND.width * KIND.height *2]; //512 * 2 = 1024 or 1024 * 2 = 2048
+     //frame_ = new short [KIND.width * KIND.height];
+	 //BitmapBytes = new byte[KIND.width * KIND.height *2]; //512 * 2 = 1024 or 1024 * 2 = 2048
 	 
-	 loadRGB565(); //load the select pic raw565 file
+	 //loadRGB565(); //load the select pic raw565 file
  }
     
     private void updatePrefs() {
