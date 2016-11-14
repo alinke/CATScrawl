@@ -31,6 +31,7 @@ import alt.android.os.CountDownTimer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -45,6 +46,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -60,6 +62,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -225,6 +228,10 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	private boolean isAppInBackground = false;
 	
 	private GoogleAnalyticsTracker tracker;
+	
+	private SharedPreferences.Editor editor;
+	
+	final String welcomeScreenShownPref = "welcomeScreenShown";
 
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -286,6 +293,37 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 	    VerticalPositionSeekBar.setMax(KIND.height); //maximum for y offset is 32 for pixel and 64 for super pixel 
 	    VerticalPositionSeekBar.setProgress(prefYoffset_); //start in the middle
 */	    
+		
+		
+		Boolean welcomeScreenShown = prefs.getBoolean(welcomeScreenShownPref, false);
+
+        if (!welcomeScreenShown) {
+            // here you can launch another activity if you like
+        	// use this to announce new features in future apps
+            // the code below will display a popup
+
+           /* ******** OLD WELCOME SCREEN ******************
+            * 
+            * String whatsNewTitle = getResources().getString(R.string.whatsNewTitle);
+            String whatsNewText = getResources().getString(R.string.whatsNewText);
+            new AlertDialog.Builder(this).setIcon(R.drawable.ic_action_event).setTitle(whatsNewTitle).setMessage(whatsNewText).setPositiveButton(
+                    R.string.OKText, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();*/
+        	
+        	
+        	showCoachMarks();
+        	
+            editor = prefs.edit();
+            editor.putBoolean(welcomeScreenShownPref, true);
+            editor.commit(); // Very important to save the preference
+        }
+		
+		
+		
+		
 		if (isNetworkAvailable()) {
 	    
 		    ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -549,6 +587,25 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
         	}
     };
     
+    private void showCoachMarks() {  
+    	
+    	final Dialog dialog = new Dialog(this);
+          dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+          dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+          dialog.setContentView(R.layout.coach_mark);
+          dialog.setCanceledOnTouchOutside(true);
+          //for dismissing anywhere you touch
+          View masterView = dialog.findViewById(R.id.coach_mark_master_view);
+          masterView.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  dialog.dismiss();
+              }
+          });
+          dialog.show();
+          
+    	}  
+    
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager 
               = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -762,6 +819,15 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
  	    	AlertDialog.Builder alert=new AlertDialog.Builder(this);
  	      	alert.setTitle(getResources().getString(R.string.setupInstructionsStringTitle)).setIcon(R.drawable.icon).setMessage(getResources().getString(R.string.setupInstructionsString)).setNeutralButton(getResources().getString(R.string.OKText), null).show();
  	   }
+      
+      if (item.getItemId() == R.id.bluetoothMenu_instructions) {
+	    	AlertDialog.Builder alert=new AlertDialog.Builder(this);
+	      	alert.setTitle(getResources().getString(R.string.bluetoothSetupInstructionsStringTitle)).setIcon(R.drawable.icon).setMessage(getResources().getString(R.string.bluetoothSetupInstructionsString)).setNeutralButton(getResources().getString(R.string.OKText), null).show();
+	   }
+    
+      if (item.getItemId() == R.id.overlay_help) {
+  	  	showCoachMarks();
+	   }
     	
 	  
       if (item.getItemId() == R.id.menu_btPair)
@@ -773,7 +839,7 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 		else { //we have a PIXEL V2 unit
 			showToast("Bluetooth Pair to your CAT device using code: 0000");
 		}
-		
+	
 	  Intent intent = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
       startActivityForResult(intent, REQUEST_PAIR_DEVICE);
        

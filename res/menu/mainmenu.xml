@@ -14,14 +14,24 @@ android:title="@string/menu_prefs_title"
     android:showAsAction="always"
 />
 
-<item android:id="@+id/menu_about"
-android:title="@string/menu_about_title"
-android:icon="@drawable/ic_menu_info_details"
+<item android:id="@+id/overlay_help"
+android:title="@string/overlaymenu_instructions_title"
+android:icon="@drawable/ic_menu_database"
 />
 
 <item android:id="@+id/menu_instructions"
 android:title="@string/menu_instructions_title"
 android:icon="@drawable/ic_menu_database"
+/>
+
+<item android:id="@+id/bluetoothMenu_instructions"
+android:title="@string/bluetoothMenu_instructions_title"
+android:icon="@drawable/ic_menu_database"
+/>
+
+<item android:id="@+id/menu_about"
+android:title="@string/menu_about_title"
+android:icon="@drawable/ic_menu_info_details"
 />
 
 

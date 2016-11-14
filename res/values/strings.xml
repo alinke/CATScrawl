@@ -22,8 +22,14 @@
     
    
    <string name="menu_instructions_title">Instructions</string>
-   <string name="setupInstructionsString">Bluetooth pair to your CAT device which will show up as \'CAT\' using pin 0000</string>
+   <string name="setupInstructionsString">Bluetooth pair to your CAT Clutch which will show up as \'CAT\' using pin 0000</string>
    <string name="setupInstructionsStringTitle">Instructions</string>   
+   
+    <string name="bluetoothMenu_instructions_title">Bluetooth Troubleshooting</string>
+    <string name="bluetoothSetupInstructionsString">If after successful Bluetooth pairing (using pin 0000), this app does not find your CAT Clutch. Kill this app and launch again.\n\nIf still not found, then turn off and on Bluetooth in Android settings and Bluetooth pair again to CAT using pin 0000.</string>
+    <string name="bluetoothSetupInstructionsStringTitle">Bluetooth Troubleshooting</string> 
+    
+    <string name="overlaymenu_instructions_title">Quick Help</string>
     
      
     <string name="prefTitle">CAT Scrawl Settings</string>
@@ -35,7 +41,7 @@
     <string name="scanAllSummary">Only images in the pixel/pixelart folder of your SD card will be displayed. Checking this box displays all SD card pictures.</string>
   
     <string name="OKText">OK</string>   
-    <string name="notFoundString">CAT Device Not Found</string>   
+    <string name="notFoundString">CAT Clutch Not Found</string>   
    
     <string name="selected_matrix">selected_matrix</string>
     <string name="matrix">CAT Model</string>
@@ -136,7 +142,7 @@
     <string name="pref_debugModeDefault">false</string>    
     <string name="debugModeSummary"></string>
     
-     <string name="AutoSelectPanel">Auto Select CAT Device</string>    
+     <string name="AutoSelectPanel">Auto Select CAT Clutch</string>    
     <string name="pref_AutoSelectPanel">pref_AutoSelectPanel</string>
     <string name="pref_AutoSelectPanelDefault">true</string>
     <string name="AutoSelectPanelSummary">Turn this off if you want to manually select the LED panel</string>
