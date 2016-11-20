@@ -298,21 +298,6 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
 		Boolean welcomeScreenShown = prefs.getBoolean(welcomeScreenShownPref, false);
 
         if (!welcomeScreenShown) {
-            // here you can launch another activity if you like
-        	// use this to announce new features in future apps
-            // the code below will display a popup
-
-           /* ******** OLD WELCOME SCREEN ******************
-            * 
-            * String whatsNewTitle = getResources().getString(R.string.whatsNewTitle);
-            String whatsNewText = getResources().getString(R.string.whatsNewText);
-            new AlertDialog.Builder(this).setIcon(R.drawable.ic_action_event).setTitle(whatsNewTitle).setMessage(whatsNewText).setPositiveButton(
-                    R.string.OKText, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    }).show();*/
-        	
         	
         	showCoachMarks();
         	
@@ -320,9 +305,6 @@ public class ScrollingTextActivity extends IOIOActivity implements OnColorChange
             editor.putBoolean(welcomeScreenShownPref, true);
             editor.commit(); // Very important to save the preference
         }
-		
-		
-		
 		
 		if (isNetworkAvailable()) {
 	    

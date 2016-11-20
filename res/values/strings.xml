@@ -26,7 +26,8 @@
    <string name="setupInstructionsStringTitle">Instructions</string>   
    
     <string name="bluetoothMenu_instructions_title">Bluetooth Troubleshooting</string>
-    <string name="bluetoothSetupInstructionsString">If after successful Bluetooth pairing (using pin 0000), this app does not find your CAT Clutch. Kill this app and launch again.\n\nIf still not found, then turn off and on Bluetooth in Android settings and Bluetooth pair again to CAT using pin 0000.</string>
+    
+    <string name="bluetoothSetupInstructionsString">If after successful Bluetooth pairing (using pin 0000), this app does not find your CAT Clutch. Kill this app and launch again.\n\nIf still not found, then turn off and on Bluetooth in Android settings and Bluetooth pair again to CAT using pin 0000.\n\nIf you get the message while pairing \&apos;Can\&apos;t communicate with CAT\&apos;, try again and it should pair after a few attemps.</string>
     <string name="bluetoothSetupInstructionsStringTitle">Bluetooth Troubleshooting</string> 
     
     <string name="overlaymenu_instructions_title">Quick Help</string>
